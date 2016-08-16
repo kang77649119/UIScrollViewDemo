@@ -15,7 +15,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     let screenH = UIScreen.mainScreen().bounds.height
     var tableView:UITableView?
     
-    let datas = [ "contentOffset" ]
+    let datas = [ "contentSize" ,"contentOffset", "contentInset" ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,13 +55,24 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         switch indexPath.row {
-        case 0:
+           
+            case 0:
+                
+                let targetVC = ContentSizeVC(nibName: "ContentSizeVC", bundle: nil)
+                self.navigationController?.pushViewController(targetVC, animated: true)
             
-            let targetVC = ContentOffsetVC(nibName: "ContentOffsetVC", bundle: nil)
-            self.navigationController?.pushViewController(targetVC, animated: true)
+            case 1:
             
-        default:
-            return
+                let targetVC = ContentOffsetVC(nibName: "ContentOffsetVC", bundle: nil)
+                self.navigationController?.pushViewController(targetVC, animated: true)
+            
+            case 2:
+            
+                let targetVC = ContentInsetVC(nibName: "ContentInsetVC", bundle: nil)
+                self.navigationController?.pushViewController(targetVC, animated: true)
+
+            default:
+                return
         }
         
     }

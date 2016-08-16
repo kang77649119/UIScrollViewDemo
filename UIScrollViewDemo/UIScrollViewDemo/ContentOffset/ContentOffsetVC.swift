@@ -29,15 +29,14 @@ class ContentOffsetVC: UIViewController {
      */
     func initBasicUI() {
         
-        self.title = "ContentOffset属性"
+        self.title = "contentOffset属性"
         self.view.backgroundColor = UIColor.whiteColor()
         
-        let image = UIImage(named: "test")
-        let imgView = UIImageView(frame: CGRectMake(0, 0, image!.size.width, image!.size.height))
-        imgView.image = image
+        // 具有导航栏的控制器 默认会给scrollView添加64像素的内边距,需要手动取消
+        self.automaticallyAdjustsScrollViewInsets = false
+        self.imgView = UIImageView(image: UIImage(named: "test"))
         self.scrollView.addSubview(imgView)
-        self.imgView = imgView
-        self.scrollView.contentSize = image!.size
+        self.scrollView.contentSize = self.imgView.image!.size
         
     }
     
@@ -46,7 +45,7 @@ class ContentOffsetVC: UIViewController {
      */
     @IBAction func left(sender: UIButton) {
         UIView.animateWithDuration(0.25) {
-            self.scrollView.contentOffset = CGPointMake(0, self.scrollView.contentOffset.y)
+            self.scrollView.contentOffset = CGPointMake( 0, self.scrollView.contentOffset.y)
         }
     }
     
@@ -55,7 +54,7 @@ class ContentOffsetVC: UIViewController {
      */
     @IBAction func top(sender: UIButton) {
         UIView.animateWithDuration(0.25) {
-            self.scrollView.contentOffset = CGPointMake(self.scrollView.contentOffset.x, 0)
+            self.scrollView.contentOffset = CGPointMake( self.scrollView.contentOffset.x, 0)
         }
     }
     
